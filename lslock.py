@@ -13,14 +13,37 @@ def create_locks(directory="/tmp/lslock-test"):
     """Creates some locked files in directory and checks the validity of lslock"""
     pass
 
-def create_lock(directory="/tmp/lslock-test"):
-    """Creates a locked file in directory"""
+
+def inodes_in_dir(directory):
+    """Descent into directory and return a dict of all inodes with their filepath"""
+    inode_dict = {}
+    for filepath in files_in_dir(directory):
+        inode_dict[os.stat(filepath).st_ino] = filepath
+    return inode_dict
+
+
+def files_in_dir(directory):
+    """Returns all files in directory and its subdirectories
+    If a file is given, return the file"""
+    file_paths = []
+
+    if os.path.isfile(directory):
+        file_paths.append(directory)
+    else:
+        for root, directories, files in os.walk(directory):
+            for filename in files:
+                filepath = os.path.join(root, filename)
+                file_paths.append(filepath)
+    return file_paths
+
+def create_lock(filename, directory="/tmp/lslock-test"):
+    """Creates a locked file filename in directory"""
     if not os.path.exists(directory):
         os.makedirs(directory)
-    file_name = os.path.join(directory, random_string())
-    with open(file_name, "w") as lock_file:
+    full_path = os.path.join(directory, filename)
+    with open(full_path, "w") as lock_file:
         fcntl.flock(lock_file, fcntl.LOCK_NB|fcntl.LOCK_EX)
-        click.echo("Creating lock on " + click.format_filename(file_name))
+        click.echo("Creating lock on {}".format(click.format_filename(full_path)))
 
 def random_string(size=10):
     """Generates a random lowercase string of size"""
