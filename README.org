@@ -1,0 +1,5 @@
+* lslock
+* Development
+** Prerequisites
+- Make sure you have vagrant installed. Then run =vagrant up= in the cloned repository. You are now able to connect with =ssh vagrant@172.25.12.6:22=, password =vagrant= and find the contents of this repository at =/vagrant/=. Activate the virtual env with =. /vagrant/venv/bin/activate= and you're set.
+** Running tests

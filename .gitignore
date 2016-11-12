@@ -1,0 +1,4 @@
+/.vagrant
+/*.egg-info/
+/venv
+*.pyc
