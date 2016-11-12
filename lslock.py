@@ -28,3 +28,11 @@ def random_string(size=10):
 
 def test():
     assert True
+
+def test_lock_file_creation():
+    filename = random_string()
+    directory = "/tmp/lsblock-tests"
+    create_lock(filename, directory)
+    full_path = os.path.join(directory, filename)
+    click.echo("Checking if {} exists".format(full_path))
+    assert os.path.isfile(full_path)
