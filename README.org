@@ -17,8 +17,17 @@ See =lslock --help= or =lslock-test --help= for parameters.
 =lslock= was tested on Ubuntu 12.04, but should work on Linux with Python >= 2.7.
 For a leaner method of testing for locks on specific files, check out [[https://linux.die.net/man/8/lsof][lsof]].
 ** Installation
+   Make sure you have python and pip installed. If you are on a debian/ubuntu based system, you can install them via
+#+BEGIN_SRC sh
+sudo apt-get update
+sudo apt-get install -y python-pip python-dev build-essential
+sudo pip install --upgrade pip virtualenv
+#+END_SRC
+Then run the following to be able to run =lslock= and =lslock-test=. If you are not using a virtualenv, you might need to run this as sudo as well.
 #+BEGIN_SRC sh
 cd <path-to-repo>
+virtualenv venv
+. venv/bin/activate
 pip install -e .
 #+END_SRC
 ** Development
@@ -27,4 +36,4 @@ Make sure you have vagrant installed. Then run =vagrant up= in the cloned reposi
 
  Create the virtual env with =virtualenv /vagrant/venv= and activate it with =. /vagrant/venv/bin/activate=. Install the dependencies via =pip install -e /vagrant/=.
 *** Running tests
-You can run the tests via =nosetests lslock.py=.
+You can run the tests via =nosetests /vagrant/lslock.py=.

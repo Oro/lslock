@@ -2,13 +2,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7429b48">1. lslock</a>
+<li><a href="#orge10bff5">1. lslock</a>
 <ul>
-<li><a href="#org76d60e3">1.1. Installation</a></li>
-<li><a href="#org02caf2d">1.2. Development</a>
+<li><a href="#org3027c06">1.1. Installation</a></li>
+<li><a href="#orgd3c7014">1.2. Development</a>
 <ul>
-<li><a href="#org02bb3c7">1.2.1. Prerequisites</a></li>
-<li><a href="#org2eff80f">1.2.2. Running tests</a></li>
+<li><a href="#orgf213cd9">1.2.1. Prerequisites</a></li>
+<li><a href="#org95805cd">1.2.2. Running tests</a></li>
 </ul>
 </li>
 </ul>
@@ -17,7 +17,7 @@
 </div>
 </div>
 
-<a id="org7429b48"></a>
+<a id="orge10bff5"></a>
 
 # lslock
 
@@ -36,20 +36,30 @@ See `lslock --help` or `lslock-test --help` for parameters.
 For a leaner method of testing for locks on specific files, check out [lsof](https://linux.die.net/man/8/lsof).
 
 
-<a id="org76d60e3"></a>
+<a id="org3027c06"></a>
 
 ## Installation
 
+Make sure you have python and pip installed. If you are on a debian/ubuntu based system, you can install them via
+
+    sudo apt-get update
+    sudo apt-get install -y python-pip python-dev build-essential
+    sudo pip install --upgrade pip virtualenv
+
+Then run the following to be able to run `lslock` and `lslock-test`. If you are not using a virtualenv, you might need to run this as sudo as well.
+
     cd <path-to-repo>
+    virtualenv venv
+    . venv/bin/activate
     pip install -e .
 
 
-<a id="org02caf2d"></a>
+<a id="orgd3c7014"></a>
 
 ## Development
 
 
-<a id="org02bb3c7"></a>
+<a id="orgf213cd9"></a>
 
 ### Prerequisites
 
@@ -58,9 +68,9 @@ Make sure you have vagrant installed. Then run `vagrant up` in the cloned reposi
 Create the virtual env with `virtualenv /vagrant/venv` and activate it with `. /vagrant/venv/bin/activate`. Install the dependencies via `pip install -e /vagrant/`.
 
 
-<a id="org2eff80f"></a>
+<a id="org95805cd"></a>
 
 ### Running tests
 
-You can run the tests via `nosetests lslock.py`.
+You can run the tests via `nosetests /vagrant/lslock.py`.
 
