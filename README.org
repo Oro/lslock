@@ -1,4 +1,12 @@
 * lslock
+
+#+BEGIN_SRC sh
+lslock /tmp
+#+END_SRC
+#+BEGIN_EXAMPLE
+File /tmp/locks/my.lock is locked by PID 5421
+#+END_EXAMPLE
+
 =lslock= comes with two executables, =lslock= and =lslock-test=.
 =lslock= checks a given directory (and subdirectories) for any locked files and outputs them.
 =lslock-test= locks a given number of files in a given directory and is used to check the validity of =lslock=.
