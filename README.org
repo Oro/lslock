@@ -1,5 +1,30 @@
 * lslock
-* Development
-** Prerequisites
-- Make sure you have vagrant installed. Then run =vagrant up= in the cloned repository. You are now able to connect with =ssh vagrant@172.25.12.6:22=, password =vagrant= and find the contents of this repository at =/vagrant/=. Activate the virtual env with =. /vagrant/venv/bin/activate= and you're set.
-** Running tests
+
+#+BEGIN_SRC sh
+lslock /tmp
+#+END_SRC
+#+BEGIN_EXAMPLE
+File /tmp/locks/my.lock is locked by PID 5421
+#+END_EXAMPLE
+
+=lslock= comes with two executables, =lslock= and =lslock-test=.
+
+- =lslock= checks a given directory (and subdirectories) for any locked files and outputs them.
+- =lslock-test= locks a given number of files in a given directory and is used to check the validity of =lslock=.
+
+See =lslock --help= or =lslock-test --help= for parameters.
+
+=lslock= was tested on Ubuntu 12.04, but should work on Linux with Python >= 2.7.
+For a leaner method of testing for locks on specific files, check out [[https://linux.die.net/man/8/lsof][lsof]].
+** Installation
+#+BEGIN_SRC sh
+cd <path-to-repo>
+pip install -e .
+#+END_SRC
+** Development
+*** Prerequisites
+Make sure you have vagrant installed. Then run =vagrant up= in the cloned repository. You are now able to connect with =ssh vagrant@172.25.12.6:22=, password =vagrant= and find the contents of this repository at =/vagrant/=.
+
+ Create the virtual env with =virtualenv /vagrant/venv= and activate it with =. /vagrant/venv/bin/activate=. Install the dependencies via =pip install -e /vagrant/=.
+*** Running tests
+You can run the tests via =nosetests lslock.py=.
