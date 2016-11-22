@@ -37,3 +37,8 @@ Make sure you have vagrant installed. Then run =vagrant up= in the cloned reposi
  Create the virtual env with =virtualenv /vagrant/venv= and activate it with =. /vagrant/venv/bin/activate=. Install the dependencies via =pip install -e /vagrant/=.
 *** Running tests
 You can run the tests via =nosetests /vagrant/lslock.py=.
+
+* TODOs
+- Make sure that lslock actually follows symlinks. It currently errors on =lslock /=
+- For large data sets (like =/=) lslock will take a long time and probably die of memory exhaustion. Check [[file:lslock.py::files_in_directory%20=%20inodes_in_dir(directory)][lsock:72ff]] to compare files in batches instead of all at once.
+- For lslock-test, use the actuall lslock methods to check for locked files instead of circumventing the call.
